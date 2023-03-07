@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "838272136299",
+    "project_id": "dank-tank-caf5a",
+    "storage_bucket": "dank-tank-caf5a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:838272136299:android:fcb9089cd236ea8eef2d2e",
+        "android_client_info": {
+          "package_name": "com.mitchant.mitchellantoine_danktank"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "838272136299-5o0br6qrh26fbth8m6ehddls0t8tdjj0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mitchant.mitchellantoine_danktank",
+            "certificate_hash": "244a1b4a478703c91574bf20dfb68f55916da9fb"
+          }
+        },
+        {
+          "client_id": "838272136299-6e2uenr97p3osj640trimfv7uh37lvqa.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDIhqlc-EldRak6Q36H_PKDXRY4Olfd5Uo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "838272136299-6e2uenr97p3osj640trimfv7uh37lvqa.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "838272136299-tn1k9rmheodo7eggo191561ut92gj7e5.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.fullsail.MitchellAntoine-DankTank"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
