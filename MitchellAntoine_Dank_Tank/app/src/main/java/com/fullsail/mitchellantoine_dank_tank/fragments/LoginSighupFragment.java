@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.fullsail.mitchellantoine_dank_tank.LoginActivity;
@@ -22,7 +23,7 @@ import com.fullsail.mitchellantoine_dank_tank.SignUpActivity;
 public class LoginSighupFragment extends Fragment {
 
     public static final String TAG = "LoginSighupFragment";
-    TextView login, signup;
+    Button login, signup;
 
     public LoginSighupFragment() {
         // Required empty public constructor
