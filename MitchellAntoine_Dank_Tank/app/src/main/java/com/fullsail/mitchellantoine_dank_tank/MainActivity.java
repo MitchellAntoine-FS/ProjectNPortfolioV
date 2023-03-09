@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -12,7 +13,7 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity.TAG";
 
     private FirebaseAuth mAuth;
-    private boolean loggedIn = true;
+    private boolean loggedIn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,9 +38,13 @@ public class MainActivity extends AppCompatActivity {
 
         // Check to see if current user is logged in
         FirebaseUser currentUser = mAuth.getCurrentUser();
+        Log.i(TAG, "onStart: "+ currentUser);
+
         if (currentUser != null) {
             loggedIn = true;
             currentUser.reload();
+        }else {
+            loggedIn = false;
         }
     }
 }
