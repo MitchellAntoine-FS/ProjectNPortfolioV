@@ -5,8 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.fullsail.mitchellantoine_dank_tank.fragments.SignupFragment;
+import com.fullsail.mitchellantoine_dank_tank.object.SignupListener;
 
-public class SignUpActivity extends AppCompatActivity {
+public class SignUpActivity extends AppCompatActivity implements SignupListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,5 +17,10 @@ public class SignUpActivity extends AppCompatActivity {
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.signup_container, SignupFragment.newInstance(), SignupFragment.TAG)
                 .commit();
+    }
+
+    @Override
+    public void closeSignup() {
+        finish();
     }
 }

@@ -64,7 +64,7 @@ public class LoginFragment extends Fragment {
         etEmail = view.findViewById(R.id.email_login_entry);
         String email = String.valueOf(etEmail.getText());
 
-        if (TextUtils.isEmpty(email)) {
+        if (TextUtils.isEmpty(email) || !email.contains("@") || !email.contains(".com")) {
             etEmail.setError("Required.");
         }else {
             etEmail.setError(null);

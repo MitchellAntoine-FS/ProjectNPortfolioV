@@ -10,4 +10,11 @@
     <string name="pword">Password</string>
     <string name="email">"Email "</string>
     <string name="password_here">Password Here</string>
+    <string name="first_name_signup">First Name</string>
+    <string name="enter_first_name">Enter First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="enter_last_name">Enter Last Name</string>
+    <string name="signup_email">Email Address</string>
+    <string name="signup_password_label">Password</string>
+    <string name="create_account_btn">Create Account</string>
 </resources>
