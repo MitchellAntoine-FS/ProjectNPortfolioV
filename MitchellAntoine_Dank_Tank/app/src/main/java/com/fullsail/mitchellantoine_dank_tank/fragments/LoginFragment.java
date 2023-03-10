@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -20,14 +21,12 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-
-import java.util.Objects;
 
 public class LoginFragment extends Fragment {
     public static final String TAG = "LoginFragment.TAG";
     private FirebaseAuth mAuth;
     EditText etEmail, etPassword;
+    Button signInBtn;
     LogInListener mListener;
 
     public static LoginFragment newInstance() {
@@ -80,9 +79,14 @@ public class LoginFragment extends Fragment {
             etPassword.setError(null);
         }
 
-        // Sign in with email and password
-        signInWithEmailPassword(email, password);
-
+        signInBtn = (Button) view.findViewById(R.id.login_screen_btn);
+        signInBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Sign in with email and password
+                signInWithEmailPassword(email, password);
+            }
+        });
     }
 
     private void signInWithEmailPassword(String email, String password) {
