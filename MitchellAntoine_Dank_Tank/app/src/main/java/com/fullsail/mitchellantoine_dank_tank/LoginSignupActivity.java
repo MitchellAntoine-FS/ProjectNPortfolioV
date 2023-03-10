@@ -20,6 +20,7 @@ public class LoginSignupActivity extends AppCompatActivity {
         AlertDialog.Builder dialog = new AlertDialog.Builder(this);
         dialog.setTitle("AGE VERIFICATION");
         dialog.setMessage("Are you 21 years old or older?");
+
         dialog.setPositiveButton("YES", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -30,6 +31,7 @@ public class LoginSignupActivity extends AppCompatActivity {
                         .commit();
             }
         });
+
         dialog.setNegativeButton("NO", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {

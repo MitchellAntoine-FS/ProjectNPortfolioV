@@ -5,8 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.fullsail.mitchellantoine_dank_tank.fragments.LoginFragment;
+import com.fullsail.mitchellantoine_dank_tank.object.LogInListener;
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity implements LogInListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,4 +19,8 @@ public class LoginActivity extends AppCompatActivity {
                 .commit();
     }
 
+    @Override
+    public void closeLogIn() {
+        finish();
+    }
 }
