@@ -29,6 +29,7 @@
         android:importantForAutofill="no"
         android:inputType="textPersonName"
         android:minHeight="48dp"
+        android:textColor="#FEFEFE"
         tools:ignore="VisualLintTextFieldSize,SpeakableTextPresentCheck" />
 
     <TextView
@@ -53,6 +54,7 @@
         android:importantForAutofill="no"
         android:inputType="textPersonName"
         android:minHeight="48dp"
+        android:textColor="#FEFEFE"
         tools:ignore="VisualLintTextFieldSize,SpeakableTextPresentCheck" />
 
     <TextView
@@ -77,6 +79,7 @@
         android:importantForAutofill="no"
         android:inputType="textEmailAddress"
         android:minHeight="48dp"
+        android:textColor="#FEFEFE"
         tools:ignore="VisualLintTextFieldSize,SpeakableTextPresentCheck" />
 
     <TextView
@@ -101,6 +104,7 @@
         android:importantForAutofill="no"
         android:inputType="textPassword"
         android:minHeight="48dp"
+        android:textColor="#FEFEFE"
         tools:ignore="SpeakableTextPresentCheck,VisualLintTextFieldSize" />
 
     <Button

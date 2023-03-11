@@ -8,4 +8,10 @@
     android:background="#02221E"
     tools:context=".LoginSignupActivity">
 
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/cannabackground"
+        android:contentDescription="@string/login_background" />
 </FrameLayout>

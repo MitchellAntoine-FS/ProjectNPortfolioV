@@ -17,4 +17,8 @@
     <string name="signup_email">Email Address</string>
     <string name="signup_password_label">Password</string>
     <string name="create_account_btn">Create Account</string>
+    <string name="rejection_text">You Must Be At Least 21yrs Old</string>
+    <string name="main_background">main_background</string>
+    <string name="login_background">login_background</string>
+    <string name="log_in_background">log_in_background</string>
 </resources>

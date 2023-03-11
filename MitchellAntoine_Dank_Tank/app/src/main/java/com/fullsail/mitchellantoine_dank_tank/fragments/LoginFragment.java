@@ -59,32 +59,34 @@ public class LoginFragment extends Fragment {
         // Instantiate objects
         mAuth = FirebaseAuth.getInstance();
 
-        // Get User email entry
-        etEmail = view.findViewById(R.id.email_login_entry);
-        String email = String.valueOf(etEmail.getText());
-
-        if (TextUtils.isEmpty(email) || !email.contains("@") || !email.contains(".com")) {
-            etEmail.setError("Required.");
-        }else {
-            etEmail.setError(null);
-        }
-
-        // Get user password entry
-        etPassword = view.findViewById(R.id.password_login_entry);
-        String password = String.valueOf(etPassword.getText());
-
-        if (TextUtils.isEmpty(password)) {
-            etPassword.setError("Required.");
-        }else {
-            etPassword.setError(null);
-        }
-
         signInBtn = (Button) view.findViewById(R.id.login_screen_btn);
         signInBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Sign in with email and password
-                signInWithEmailPassword(email, password);
+                // Get User email entry
+                etEmail = view.findViewById(R.id.email_login_entry);
+                String email = etEmail.getText().toString();
+
+                if (TextUtils.isEmpty(email) || !email.contains("@") || !email.contains(".com")) {
+                    etEmail.setError("Required.");
+                }else {
+                    etEmail.setError(null);
+                }
+
+                // Get user password entry
+                etPassword = view.findViewById(R.id.password_login_entry);
+                String password = etPassword.getText().toString();
+
+                if (TextUtils.isEmpty(password)) {
+                    etPassword.setError("Required.");
+                }else {
+                    etPassword.setError(null);
+                }
+
+                if (!(email.trim().length() == 0) || !(password.trim().length() == 0)) {
+                    // Sign in with email and password
+                    signInWithEmailPassword(email, password);
+                }
             }
         });
     }
@@ -105,7 +107,7 @@ public class LoginFragment extends Fragment {
 
                         }else {
                             // If sign in fails, display a message to the user.
-                            Log.w(TAG, "signInWithEmail:failure", task.getException());
+                            Log.w(TAG, "signInWithEmail: failure", task.getException());
                             Toast.makeText(getContext(), "Authentication failed.", Toast.LENGTH_SHORT).show();
                         }
                     }

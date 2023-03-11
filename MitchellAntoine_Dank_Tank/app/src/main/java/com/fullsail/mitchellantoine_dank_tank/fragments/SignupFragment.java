@@ -62,48 +62,51 @@ public class SignupFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         mAuth = FirebaseAuth.getInstance();
-        EditText etFirstNam = view.findViewById(R.id.first_name_entry);
-        String firstName = etFirstNam.getText().toString();
-
-        if (TextUtils.isEmpty(firstName)) {
-            etFirstNam.setError("Required.");
-        }else {
-            etFirstNam.setError(null);
-        }
-
-        EditText etLastNam = view.findViewById(R.id.last_nam_entry);
-        String lastName = etLastNam.getText().toString();
-
-        if (TextUtils.isEmpty(lastName)) {
-            etLastNam.setError("Required.");
-        }else {
-            etLastNam.setError(null);
-        }
-
-        EditText etEmail = view.findViewById(R.id.signup_email_entry);
-        String email = etEmail.getText().toString();
-
-        if (TextUtils.isEmpty(email) || !email.contains("@") || !email.contains(".com")) {
-            etEmail.setError("Required.");
-        }else {
-            etEmail.setError(null);
-        }
-
-        EditText etPassword = view.findViewById(R.id.signup_pwd_entry);
-        String pwd = etPassword.getText().toString();
-
-        if (TextUtils.isEmpty(pwd) || (pwd.toCharArray().length <= 9) ) {
-            etPassword.setError("Required.");
-        }else {
-            etPassword.setError(null);
-        }
-
         signUpBtn = (Button) view.findViewById(R.id.create_account_btn);
         signUpBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Create account
-                createAccount(email, pwd);
+
+                EditText etFirstNam = view.findViewById(R.id.first_name_entry);
+                String firstName = etFirstNam.getText().toString();
+
+                if (TextUtils.isEmpty(firstName)) {
+                    etFirstNam.setError("Required.");
+                }else {
+                    etFirstNam.setError(null);
+                }
+
+                EditText etLastNam = view.findViewById(R.id.last_nam_entry);
+                String lastName = etLastNam.getText().toString();
+
+                if (TextUtils.isEmpty(lastName)) {
+                    etLastNam.setError("Required.");
+                }else {
+                    etLastNam.setError(null);
+                }
+
+                EditText etEmail = view.findViewById(R.id.signup_email_entry);
+                String email = etEmail.getText().toString();
+
+                if (TextUtils.isEmpty(email)) {
+                    etEmail.setError("Required.");
+                }else {
+                    etEmail.setError(null);
+                }
+
+                EditText etPassword = view.findViewById(R.id.signup_pwd_entry);
+                String pwd = etPassword.getText().toString();
+
+                if (TextUtils.isEmpty(pwd)) {
+                    etPassword.setError("Required.");
+                }else {
+                    etPassword.setError(null);
+                }
+
+                if (!(firstName.trim().length() == 0) || !(lastName.trim().length() == 0) || !(email.trim().length() == 0) || !(pwd.trim().length() == 0)) {
+                    // Create account
+                    createAccount(email, pwd);
+                }
             }
         });
     }
