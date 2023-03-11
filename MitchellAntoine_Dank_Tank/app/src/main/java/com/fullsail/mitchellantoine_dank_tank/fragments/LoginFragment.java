@@ -59,7 +59,7 @@ public class LoginFragment extends Fragment {
         // Instantiate objects
         mAuth = FirebaseAuth.getInstance();
 
-        signInBtn = (Button) view.findViewById(R.id.login_screen_btn);
+        signInBtn = view.findViewById(R.id.login_screen_btn);
         signInBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -67,7 +67,7 @@ public class LoginFragment extends Fragment {
                 etEmail = view.findViewById(R.id.email_login_entry);
                 String email = etEmail.getText().toString();
 
-                if (TextUtils.isEmpty(email) || !email.contains("@") || !email.contains(".com")) {
+                if (TextUtils.isEmpty(email)) {
                     etEmail.setError("Required.");
                 }else {
                     etEmail.setError(null);
@@ -94,25 +94,23 @@ public class LoginFragment extends Fragment {
     private void signInWithEmailPassword(String email, String password) {
         Log.i(TAG, "signInWithEmailPassword: " + email);
 
-        mAuth.signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener(requireActivity(), new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            // Sign in success
-                            Log.d(TAG, "signInWithEmail: success");
-                            Toast.makeText(getContext(), "Logged In.", Toast.LENGTH_SHORT).show();
+        mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(requireActivity(),
+                new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if (task.isSuccessful()) {
+                    // Sign in success
+                    Log.d(TAG, "signInWithEmail: success");
+                    Toast.makeText(getContext(), "Logged In.", Toast.LENGTH_SHORT).show();
 
-                            mListener.closeLogIn();
+                    mListener.closeLogIn();
 
-                        }else {
-                            // If sign in fails, display a message to the user.
-                            Log.w(TAG, "signInWithEmail: failure", task.getException());
-                            Toast.makeText(getContext(), "Authentication failed.", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
+                }else {
+                    // If sign in fails, display a message to the user.
+                    Log.w(TAG, "signInWithEmail: failure", task.getException());
+                    Toast.makeText(getContext(), "Authentication failed.", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
-
-
 }

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MitchellAntoine_Dank_Tank</string>
+    <string name="app_name">Dank Tank</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="canna_background">canna background</string>
@@ -21,4 +21,6 @@
     <string name="main_background">main_background</string>
     <string name="login_background">login_background</string>
     <string name="log_in_background">log_in_background</string>
+    <string name="gorilla_glue_4">Gorilla Glue 4</string>
+    <string name="gorillaglue4">gorillaglue4</string>
 </resources>

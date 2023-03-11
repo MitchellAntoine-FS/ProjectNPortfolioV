@@ -103,7 +103,8 @@ public class SignupFragment extends Fragment {
                     etPassword.setError(null);
                 }
 
-                if (!(firstName.trim().length() == 0) || !(lastName.trim().length() == 0) || !(email.trim().length() == 0) || !(pwd.trim().length() == 0)) {
+                if (!(firstName.trim().length() == 0) || !(lastName.trim().length() == 0)
+                        || !(email.trim().length() == 0) || !(pwd.trim().length() == 0)) {
                     // Create account
                     createAccount(email, pwd);
                 }

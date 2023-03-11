@@ -12,6 +12,6 @@
         android:id="@+id/imageView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/cannabackground"
+        app:srcCompat="@drawable/cannabis_background"
         android:contentDescription="@string/login_background" />
 </FrameLayout>
