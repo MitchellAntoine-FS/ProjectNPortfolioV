@@ -6,7 +6,9 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -21,10 +23,11 @@ import com.fullsail.mitchellantoine_dank_tank.object.Strains;
 import java.util.ArrayList;
 
 
-public class StrainGridFragment extends Fragment {
+public class StrainGridFragment extends Fragment implements AdapterView.OnItemClickListener {
 
     public static final String TAG = "StrainGridFragment";
     StrainListener mListener;
+    GridView gridView;
 
     public static StrainGridFragment newInstance() {
         return new StrainGridFragment();
@@ -48,6 +51,15 @@ public class StrainGridFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        gridView = view.findViewById(R.id.strain_grid);
+        gridView.setAdapter(new StrainGridAdapter(requireContext(), 0, mListener.getStrains()));
+        gridView.setOnItemClickListener(this);
+
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        // ToDo: Open Detailed View
 
     }
 
