@@ -1,11 +1,11 @@
 package com.fullsail.mitchellantoine_dank_tank;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.fullsail.mitchellantoine_dank_tank.fragments.LoginSighupFragment;
 
@@ -42,4 +42,5 @@ public class LoginSignupActivity extends AppCompatActivity {
         dialog.show();
 
     }
+
 }

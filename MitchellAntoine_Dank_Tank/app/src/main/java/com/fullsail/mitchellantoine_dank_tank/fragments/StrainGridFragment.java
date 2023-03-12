@@ -1,8 +1,8 @@
 package com.fullsail.mitchellantoine_dank_tank.fragments;
 
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +19,7 @@ import androidx.fragment.app.Fragment;
 import com.fullsail.mitchellantoine_dank_tank.R;
 import com.fullsail.mitchellantoine_dank_tank.object.StrainListener;
 import com.fullsail.mitchellantoine_dank_tank.object.Strains;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -50,7 +51,7 @@ public class StrainGridFragment extends Fragment implements AdapterView.OnItemCl
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
+        Log.i(TAG, "onViewCreated: View Created" );
         gridView = view.findViewById(R.id.strain_grid);
         gridView.setAdapter(new StrainGridAdapter(requireContext(), 0, mListener.getStrains()));
         gridView.setOnItemClickListener(this);
@@ -80,8 +81,13 @@ public class StrainGridFragment extends Fragment implements AdapterView.OnItemCl
             }
 
             Strains strains = getItem(position);
+
             ImageView iv = gridItemView.findViewById(R.id.grid_item_imageView);
-            iv.setImageURI(Uri.parse(strains.getImageUrl()));
+            Picasso.get()
+                    .load(strains.getImageUrl())
+                    .resize(600, 600)
+                    .centerInside()
+                    .into(iv);
 
             TextView tv = gridItemView.findViewById(R.id.strain_name_textView);
             tv.setText(strains.getName());
