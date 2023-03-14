@@ -12,6 +12,9 @@
         android:theme="@style/Theme.MitchellAntoine_Dank_Tank"
         tools:targetApi="31">
         <activity
+            android:name=".StrainDetailsActivity"
+            android:exported="false" />
+        <activity
             android:name=".RejectionActivity"
             android:exported="false" />
         <activity

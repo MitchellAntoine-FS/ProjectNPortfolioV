@@ -37,15 +37,17 @@ public class MainActivity extends AppCompatActivity implements StrainListener {
         Intent loggedIn_Intent = getIntent();
         loggedIn = loggedIn_Intent.getBooleanExtra(Intent.EXTRA_TEXT, false);
 
-        if (!loggedIn) {
-            // Open login/signup page
-            Intent intent = new Intent(this, LoginSignupActivity.class);
-            startActivity(intent);
-        } else {
-            // Open main grid fragment
-            getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.main_container, StrainGridFragment.newInstance(), StrainGridFragment.TAG)
-                    .commit();
+        if (savedInstanceState == null) {
+            if (!loggedIn) {
+                // Open login/signup page
+                Intent intent = new Intent(this, LoginSignupActivity.class);
+                startActivity(intent);
+            } else {
+                // Open main grid fragment
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.main_container, StrainGridFragment.newInstance(), StrainGridFragment.TAG)
+                        .commit();
+            }
         }
 
     }
