@@ -85,8 +85,8 @@ public class StrainGridFragment extends Fragment implements AdapterView.OnItemCl
             ImageView iv = gridItemView.findViewById(R.id.grid_item_imageView);
             Picasso.get()
                     .load(strains.getImageUrl())
-                    .resize(600, 600)
-                    .centerInside()
+                    .resize(400, 400)
+                    .centerCrop()
                     .into(iv);
 
             TextView tv = gridItemView.findViewById(R.id.strain_name_textView);
