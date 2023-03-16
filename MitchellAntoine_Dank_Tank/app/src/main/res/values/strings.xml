@@ -22,5 +22,7 @@
     <string name="login_background">login_background</string>
     <string name="log_in_background">log_in_background</string>
     <string name="gorilla_glue_4">Gorilla Glue 4</string>
-    <string name="gorillaglue4">gorillaglue4</string>
+    <string name="gorilla_glue4">gorillaglue4</string>
+    <string name="search">Search</string>
+    <string name="search_hint">Search Strains</string>
 </resources>

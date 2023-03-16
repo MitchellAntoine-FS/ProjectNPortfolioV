@@ -4,12 +4,15 @@ import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Filter;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.SearchView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -22,13 +25,14 @@ import com.fullsail.mitchellantoine_dank_tank.object.Strains;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class StrainGridFragment extends Fragment implements AdapterView.OnItemClickListener {
 
     public static final String TAG = "StrainGridFragment";
     StrainListener mListener;
-    GridView gridView;
+    GridView gridView = null;
 
     public static StrainGridFragment newInstance() {
         return new StrainGridFragment();
@@ -64,10 +68,39 @@ public class StrainGridFragment extends Fragment implements AdapterView.OnItemCl
 
     }
 
+    public void searchStrains(MenuItem item) {
+
+        SearchView searchView = (SearchView) item.getActionView();
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+
+                (StrainGridAdapter) gridView.getAdapter().getFilter();
+
+                return true;
+            }
+        });
+
+    }
+
+
+
     public static class StrainGridAdapter extends ArrayAdapter<Strains> {
+
+        private final ArrayList<Strains> strainsArray;
+        private ArrayList<Strains> strainsFiltered;
 
         public StrainGridAdapter(@NonNull Context context, int resource, @NonNull ArrayList<Strains> objects) {
             super(context, resource, objects);
+
+            this.strainsArray = objects;
+            this.strainsFiltered = objects;
         }
 
         @NonNull
@@ -80,19 +113,55 @@ public class StrainGridFragment extends Fragment implements AdapterView.OnItemCl
                 gridItemView = LayoutInflater.from(getContext()).inflate(R.layout.fragment_grid_view, parent, false);
             }
 
-            Strains strains = getItem(position);
-
             ImageView iv = gridItemView.findViewById(R.id.grid_item_imageView);
             Picasso.get()
-                    .load(strains.getImageUrl())
+                    .load(strainsFiltered.get(position).getImageUrl())
                     .resize(400, 400)
                     .centerCrop()
                     .into(iv);
 
             TextView tv = gridItemView.findViewById(R.id.strain_name_textView);
-            tv.setText(strains.getName());
+            tv.setText(strainsFiltered.get(position).getName());
 
             return gridItemView;
+        }
+
+        @NonNull
+        @Override
+        public Filter getFilter() {
+
+            return new Filter() {
+                @Override
+                protected FilterResults performFiltering(CharSequence constraint) {
+
+                    FilterResults filterResults = new FilterResults();
+
+                    if (constraint == null || constraint.length() == 0) {
+                        filterResults.count = strainsArray.size();
+                        filterResults.values = strainsArray;
+                    }else {
+                        String searchString = constraint.toString().toLowerCase();
+                        List<Strains> resultData = new ArrayList<>();
+
+                        for (Strains strains: strainsArray) {
+                            if (strains.getName().contains(searchString) || strains.getType().contains(searchString)) {
+                                resultData.add(strains);
+                            }
+
+                            filterResults.count = resultData.size();
+                            filterResults.values = resultData;
+                        }
+                    }
+                    return filterResults;
+                }
+
+                @Override
+                protected void publishResults(CharSequence constraint, FilterResults results) {
+
+                    strainsFiltered = (ArrayList<Strains>) results.values;
+                    notifyDataSetChanged();
+                }
+            };
         }
     }
 }
