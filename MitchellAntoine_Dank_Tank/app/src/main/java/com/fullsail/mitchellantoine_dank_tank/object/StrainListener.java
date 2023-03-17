@@ -4,5 +4,6 @@ import java.util.ArrayList;
 
 public interface StrainListener {
     ArrayList<Strains> getStrains();
-    Strains getStrainPosition(int position);
+
+    void getStrainSelected(Strains strains);
 }

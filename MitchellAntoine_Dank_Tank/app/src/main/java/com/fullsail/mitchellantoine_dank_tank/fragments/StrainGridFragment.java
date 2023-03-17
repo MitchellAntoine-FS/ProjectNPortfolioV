@@ -16,6 +16,7 @@ import androidx.fragment.app.Fragment;
 import com.fullsail.mitchellantoine_dank_tank.R;
 import com.fullsail.mitchellantoine_dank_tank.helper.StrainGridAdapter;
 import com.fullsail.mitchellantoine_dank_tank.object.StrainListener;
+import com.fullsail.mitchellantoine_dank_tank.object.Strains;
 
 
 public class StrainGridFragment extends Fragment implements AdapterView.OnItemClickListener {
@@ -58,81 +59,11 @@ public class StrainGridFragment extends Fragment implements AdapterView.OnItemCl
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         // ToDo: Open Detailed View
-
+        Strains strains = (Strains) parent.getAdapter().getItem(position);
+        if (mListener != null) {
+            mListener.getStrainSelected(strains);
+        }
 
     }
 
-//    public static class StrainGridAdapter extends ArrayAdapter<Strains> {
-//
-//        private final ArrayList<Strains> strainsArray;
-//        private ArrayList<Strains> strainsFiltered;
-//
-//        public StrainGridAdapter(@NonNull Context context, int resource, @NonNull ArrayList<Strains> objects) {
-//            super(context, resource, objects);
-//
-//            this.strainsArray = objects;
-//            this.strainsFiltered = objects;
-//        }
-//
-//        @NonNull
-//        @Override
-//        public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-//
-//            View gridItemView = convertView;
-//            if (gridItemView == null) {
-//                // Layout Inflater inflates each item to be displayed in GridView.
-//                gridItemView = LayoutInflater.from(getContext()).inflate(R.layout.fragment_grid_view, parent, false);
-//            }
-//
-//            ImageView iv = gridItemView.findViewById(R.id.grid_item_imageView);
-//            Picasso.get()
-//                    .load(strainsFiltered.get(position).getImageUrl())
-//                    .resize(400, 400)
-//                    .centerCrop()
-//                    .into(iv);
-//
-//            TextView tv = gridItemView.findViewById(R.id.strain_name_textView);
-//            tv.setText(strainsFiltered.get(position).getName());
-//
-//            return gridItemView;
-//        }
-//
-//        @NonNull
-//        @Override
-//        public Filter getFilter() {
-//
-//            return new Filter() {
-//                @Override
-//                protected FilterResults performFiltering(CharSequence constraint) {
-//
-//                    FilterResults filterResults = new FilterResults();
-//
-//                    if (constraint == null || constraint.length() == 0) {
-//                        filterResults.count = strainsArray.size();
-//                        filterResults.values = strainsArray;
-//                    }else {
-//                        String searchString = constraint.toString().toLowerCase();
-//                        List<Strains> resultData = new ArrayList<>();
-//
-//                        for (Strains strains: strainsArray) {
-//                            if (strains.getName().contains(searchString) || strains.getType().contains(searchString)) {
-//                                resultData.add(strains);
-//                            }
-//
-//                            filterResults.count = resultData.size();
-//                            filterResults.values = resultData;
-//                        }
-//                    }
-//                    return filterResults;
-//                }
-//
-//                @Override
-//                protected void publishResults(CharSequence constraint, FilterResults results) {
-//
-//                    strainsFiltered = (ArrayList<Strains>) results.values;
-//                    notifyDataSetChanged();
-//                }
-//            };
-//        }
-//    }
 }

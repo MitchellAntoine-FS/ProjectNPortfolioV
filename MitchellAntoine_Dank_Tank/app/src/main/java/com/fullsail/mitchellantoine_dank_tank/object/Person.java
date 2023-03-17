@@ -8,7 +8,7 @@ public class Person {
 
     private String first_name;
     private String last_name;
-    private Uri imageUri;
+    private Uri userImageUri;
     ArrayList<Strains> fav_strains = new ArrayList<>();
 
 

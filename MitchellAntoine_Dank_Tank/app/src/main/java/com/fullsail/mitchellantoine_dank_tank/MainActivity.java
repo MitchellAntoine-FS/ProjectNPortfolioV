@@ -92,7 +92,7 @@ public class MainActivity extends AppCompatActivity implements StrainListener {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_search, menu);
+        getMenuInflater().inflate(R.menu.menu_main, menu);
 
         MenuItem menuItem = menu.findItem(R.id.app_bar_search);
 
@@ -111,6 +111,7 @@ public class MainActivity extends AppCompatActivity implements StrainListener {
                 StrainGridAdapter adapter =
                         new StrainGridAdapter(getApplicationContext(), getStrains());
                 adapter.getFilter().filter(newText);
+
 
                 return true;
             }
@@ -140,10 +141,12 @@ public class MainActivity extends AppCompatActivity implements StrainListener {
     }
 
     @Override
-    public Strains getStrainPosition(int position) {
+    public void getStrainSelected(Strains strain) {
+
+        Intent detailsIntent = new Intent(getApplicationContext(), StrainDetailsActivity.class);
 
 
-        return null;
+
     }
 
     private void updateUI() {

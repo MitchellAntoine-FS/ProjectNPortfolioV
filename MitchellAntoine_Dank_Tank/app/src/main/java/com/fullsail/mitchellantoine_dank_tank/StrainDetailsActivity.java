@@ -13,6 +13,8 @@ public class StrainDetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_strain_details);
 
+
+
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.details_container, StrainDetailsFragment.newInstance(), StrainDetailsFragment.TAG)

@@ -78,6 +78,8 @@ public class StrainGridAdapter extends BaseAdapter implements Filterable {
             filter = new CustomFilter();
         }
 
+        Log.i(TAG, "getFilter: " + filter);
+
         return filter;
     }
 
@@ -109,6 +111,8 @@ public class StrainGridAdapter extends BaseAdapter implements Filterable {
 
                 results.count = strainsFiltered.size();
                 results.values = strainsFiltered;
+
+                Log.i(TAG, "Filtering Results Count: " + results.count + " Results Value: " + results.values);
             }
 
             return results;

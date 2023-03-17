@@ -26,4 +26,16 @@
     <string name="search">Search</string>
     <string name="search_hint">Search Strains</string>
     <string name="type_name">Strain Type or Name</string>
+    <string name="details_strain_name_label">Strain Name</string>
+    <string name="details_image_desc">Details Image Desc</string>
+    <string name="strain_type">Strain Type: </string>
+    <string name="type">type</string>
+    <string name="desc">desc</string>
+    <string name="save">Save</string>
+    <string name="delete">Delete</string>
+    <string name="description">Description</string>
+    <string name="helps_textview">helps textView</string>
+    <string name="helps">Helps</string>
+    <string name="effects_textview">effects textView</string>
+    <string name="effects">Effects:</string>
 </resources>
