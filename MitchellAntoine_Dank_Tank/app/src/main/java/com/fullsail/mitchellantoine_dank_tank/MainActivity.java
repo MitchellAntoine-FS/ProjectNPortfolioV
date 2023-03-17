@@ -1,7 +1,6 @@
 package com.fullsail.mitchellantoine_dank_tank;
 
 import android.annotation.SuppressLint;
-import android.app.SearchManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,7 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.fullsail.mitchellantoine_dank_tank.fragments.StrainGridFragment;
-import com.fullsail.mitchellantoine_dank_tank.fragments.StrainGridFragment.StrainGridAdapter;
+import com.fullsail.mitchellantoine_dank_tank.helper.StrainGridAdapter;
 import com.fullsail.mitchellantoine_dank_tank.helper.StrainHelper;
 import com.fullsail.mitchellantoine_dank_tank.object.StrainListener;
 import com.fullsail.mitchellantoine_dank_tank.object.Strains;
@@ -49,7 +48,7 @@ public class MainActivity extends AppCompatActivity implements StrainListener {
                 startActivity(logInIntent);
             } else {
                 // Open main grid fragment
-                notifyDataSetChanged();
+                updateUI();
             }
         }
 
@@ -85,15 +84,10 @@ public class MainActivity extends AppCompatActivity implements StrainListener {
             }
 
             // Open main grid fragment
-            notifyDataSetChanged();
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.main_container, StrainGridFragment.newInstance(), StrainGridFragment.TAG)
+                    .commit();
         }
-    }
-
-    @Override
-    protected void onNewIntent(Intent intent) {
-        super.onNewIntent(intent);
-        setIntent(intent);
-        handleIntent(intent);
     }
 
     @Override
@@ -113,9 +107,9 @@ public class MainActivity extends AppCompatActivity implements StrainListener {
             @Override
             public boolean onQueryTextChange(String newText) {
 
-                StrainGridFragment.StrainGridAdapter adapter =
-                        new StrainGridAdapter(getApplicationContext(),
-                                0, strainsArray);
+                Log.i(TAG, "onQueryTextChange: " + newText);
+                StrainGridAdapter adapter =
+                        new StrainGridAdapter(getApplicationContext(), getStrains());
                 adapter.getFilter().filter(newText);
 
                 return true;
@@ -152,24 +146,14 @@ public class MainActivity extends AppCompatActivity implements StrainListener {
         return null;
     }
 
-    private void notifyDataSetChanged() {
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.main_container, StrainGridFragment.newInstance(), StrainGridFragment.TAG)
-                .commit();
-    }
-
-    private void handleIntent(Intent intent) {
-        if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
-            String query = intent.getStringExtra(SearchManager.QUERY);
-            preformSearch(query);
-        }
-    }
-
-    private void preformSearch(String query) {
-
+    private void updateUI() {
+        StrainGridFragment fragment = (StrainGridFragment)
+                getSupportFragmentManager().findFragmentByTag(StrainGridFragment.TAG);
 
 
     }
+
+
 }
 
 

@@ -3,11 +3,11 @@ package com.fullsail.mitchellantoine_dank_tank.object;
 public class Strains {
 
     private final String name;
-    private final String description;
-    private final String effects;
+    private String description;
+    private String effects;
     private final String imageUrl;
-    private final String helps;
-    private final String type;
+    private String helps;
+    private String type;
 
     public Strains(String name, String description, String effects, String imageUrl, String helps, String type) {
         this.name = name;
@@ -16,6 +16,11 @@ public class Strains {
         this.imageUrl = imageUrl;
         this.helps = helps;
         this.type = type;
+    }
+
+    public Strains(String name, String imageUrl) {
+        this.name=name;
+        this.imageUrl=imageUrl;
     }
 
     public String getName() {

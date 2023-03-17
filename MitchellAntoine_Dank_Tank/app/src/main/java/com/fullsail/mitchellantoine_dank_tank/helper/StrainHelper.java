@@ -41,7 +41,7 @@ public class StrainHelper {
             e.printStackTrace();
         }
 
-        Log.i("JSON", "getStrainsFromJson: Array size" + strains.size());
+        Log.i("JSON", "getStrainsFromJson: Array size: " + strains.size());
         return strains;
     }
 
