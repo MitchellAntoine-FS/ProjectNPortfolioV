@@ -33,9 +33,9 @@
     <string name="desc">desc</string>
     <string name="save">Save</string>
     <string name="delete">Delete</string>
-    <string name="description">Description</string>
+    <string name="description">Description: </string>
     <string name="helps_textview">helps textView</string>
-    <string name="helps">Helps</string>
+    <string name="helps">Helps: </string>
     <string name="effects_textview">effects textView</string>
-    <string name="effects">Effects:</string>
+    <string name="effects">Effects: </string>
 </resources>

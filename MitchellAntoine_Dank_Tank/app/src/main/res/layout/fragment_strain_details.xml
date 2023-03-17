@@ -48,7 +48,7 @@
         app:layout_constraintTop_toBottomOf="@+id/details_strain_image" />
 
     <TextView
-        android:id="@+id/type_textView"
+        android:id="@+id/details_type_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -70,7 +70,7 @@
         app:layout_constraintTop_toBottomOf="@+id/details_strain_type" />
 
     <TextView
-        android:id="@+id/effects_textView"
+        android:id="@+id/details_effects_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="37dp"
@@ -78,7 +78,7 @@
         android:text="@string/effects_textview"
         android:textColor="#E9E5E5"
         app:layout_constraintStart_toEndOf="@+id/effects_label"
-        app:layout_constraintTop_toBottomOf="@+id/type_textView" />
+        app:layout_constraintTop_toBottomOf="@+id/details_type_textView" />
 
     <TextView
         android:id="@+id/details_helps_label"
@@ -92,7 +92,7 @@
         app:layout_constraintTop_toBottomOf="@+id/effects_label" />
 
     <TextView
-        android:id="@+id/helps_textView"
+        android:id="@+id/details_helps_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="52dp"
@@ -100,7 +100,7 @@
         android:text="@string/helps_textview"
         android:textColor="#E9E5E5"
         app:layout_constraintStart_toEndOf="@+id/details_helps_label"
-        app:layout_constraintTop_toBottomOf="@+id/effects_textView" />
+        app:layout_constraintTop_toBottomOf="@+id/details_effects_textView" />
 
     <TextView
         android:id="@+id/details_desc_label"
@@ -114,7 +114,7 @@
         app:layout_constraintTop_toBottomOf="@+id/details_helps_label" />
 
     <TextView
-        android:id="@+id/desc_textView"
+        android:id="@+id/details_desc_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"

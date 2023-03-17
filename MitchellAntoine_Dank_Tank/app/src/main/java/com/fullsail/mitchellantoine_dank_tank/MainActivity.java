@@ -144,16 +144,17 @@ public class MainActivity extends AppCompatActivity implements StrainListener {
     public void getStrainSelected(Strains strain) {
 
         Intent detailsIntent = new Intent(getApplicationContext(), StrainDetailsActivity.class);
-
-
-
+        detailsIntent.putExtra(Intent.EXTRA_INTENT, strain);
+        startActivity(detailsIntent);
     }
 
     private void updateUI() {
         StrainGridFragment fragment = (StrainGridFragment)
                 getSupportFragmentManager().findFragmentByTag(StrainGridFragment.TAG);
 
-
+        if (fragment != null) {
+            fragment.refresh();
+        }
     }
 
 

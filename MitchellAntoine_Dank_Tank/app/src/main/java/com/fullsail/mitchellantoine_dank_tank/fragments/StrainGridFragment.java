@@ -48,12 +48,7 @@ public class StrainGridFragment extends Fragment implements AdapterView.OnItemCl
         super.onViewCreated(view, savedInstanceState);
         Log.i(TAG, "onViewCreated: View Created" );
 
-        StrainGridAdapter adapter = new StrainGridAdapter(requireContext(),mListener.getStrains());
-
-        gridView = view.findViewById(R.id.strain_grid);
-        gridView.setAdapter(adapter);
-        gridView.setOnItemClickListener(this);
-
+        refresh();
     }
 
     @Override
@@ -63,6 +58,16 @@ public class StrainGridFragment extends Fragment implements AdapterView.OnItemCl
         if (mListener != null) {
             mListener.getStrainSelected(strains);
         }
+
+    }
+
+    public void refresh() {
+
+        StrainGridAdapter adapter = new StrainGridAdapter(requireContext(),mListener.getStrains());
+
+        gridView = requireView().findViewById(R.id.strain_grid);
+        gridView.setAdapter(adapter);
+        gridView.setOnItemClickListener(this);
 
     }
 

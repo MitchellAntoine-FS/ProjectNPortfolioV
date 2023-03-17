@@ -58,15 +58,15 @@ public class StrainGridAdapter extends BaseAdapter implements Filterable {
 
         ImageView iv = gridItemView.findViewById(R.id.grid_item_imageView);
         Picasso.get()
-                .load(strainsFiltered.get(position).getImageUrl())
+                .load(strainsArray.get(position).getImageUrl())
                 .resize(400, 400)
                 .centerCrop()
                 .into(iv);
 
         TextView tv = gridItemView.findViewById(R.id.strain_name_textView);
-        tv.setText(strainsFiltered.get(position).getName());
+        tv.setText(strainsArray.get(position).getName());
 
-        Log.i(TAG, "getView: " + strainsFiltered.get(position).getName());
+        Log.i(TAG, "getView: " + strainsArray.get(position).getName());
 
         return gridItemView;
     }

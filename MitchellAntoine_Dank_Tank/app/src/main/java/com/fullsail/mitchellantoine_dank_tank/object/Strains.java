@@ -1,13 +1,19 @@
 package com.fullsail.mitchellantoine_dank_tank.object;
 
-public class Strains {
+import java.io.Serializable;
 
-    private final String name;
+public class Strains implements Serializable {
+
+    private String name;
     private String description;
     private String effects;
-    private final String imageUrl;
+    private String imageUrl;
     private String helps;
     private String type;
+
+    public Strains() {
+        // Required Empty Constructor
+    }
 
     public Strains(String name, String description, String effects, String imageUrl, String helps, String type) {
         this.name = name;
