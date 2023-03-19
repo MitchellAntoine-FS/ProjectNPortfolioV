@@ -2,11 +2,6 @@ package com.fullsail.mitchellantoine_dank_tank.fragments;
 
 import android.content.Context;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -16,12 +11,20 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+
 import com.fullsail.mitchellantoine_dank_tank.R;
+import com.fullsail.mitchellantoine_dank_tank.object.Person;
 import com.fullsail.mitchellantoine_dank_tank.object.SignupListener;
+import com.fullsail.mitchellantoine_dank_tank.util.PersonStorageUtil;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+
+import java.util.ArrayList;
 
 public class SignupFragment extends Fragment {
     public static final String TAG = "SignupFragment";
@@ -107,6 +110,8 @@ public class SignupFragment extends Fragment {
                         || !(email.trim().length() == 0) || !(pwd.trim().length() == 0)) {
                     // Create account
                     createAccount(email, pwd);
+                    Person person = new Person(firstName, lastName);
+                    PersonStorageUtil.savePerson(getContext(), person);
                 }
             }
         });
@@ -121,7 +126,11 @@ public class SignupFragment extends Fragment {
                         if (task.isSuccessful()) {
                             // Sign up success
                             Log.d(TAG, "createUserWithEmail: success");
-                            Toast.makeText(getContext(), "Account Created", Toast.LENGTH_SHORT).show();
+
+                            ArrayList<Person> userNam = PersonStorageUtil.loadPeople(getActivity());
+                            Toast.makeText(getContext(), userNam.get(0).getFirst_name() +
+                                    " " + userNam.get(0).getLast_name() + " Logged In.", Toast.LENGTH_SHORT).show();
+
                             mListener.closeSignup();
 
                         } else {

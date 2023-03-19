@@ -125,6 +125,10 @@ public class MainActivity extends AppCompatActivity implements StrainListener {
 
         if (item.getItemId() == R.id.app_bar_search) {
             return true;
+        } else if (item.getItemId() == R.id.profile_btn) {
+            Intent profileIntent = new Intent(this, ProfileActivity.class);
+
+            startActivity(profileIntent);
         }
 
         return super.onOptionsItemSelected(item);

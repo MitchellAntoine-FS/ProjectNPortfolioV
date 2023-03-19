@@ -91,30 +91,31 @@ public class StrainGridAdapter extends BaseAdapter implements Filterable {
 
             FilterResults results = new FilterResults();
 
-            if (constraint != null || constraint.length() > 0) {
-                // Constraint to lowercase
-                constraint = constraint.toString().toLowerCase();
+            if (constraint != null) {
+                if (constraint.length() > 0) {
+                    // Constraint to lowercase
+                    constraint = constraint.toString().toLowerCase();
 
-                ArrayList<Strains> filters = new ArrayList<>();
+                    ArrayList<Strains> filters = new ArrayList<>();
 
-                // Filtering
-                for (int i = 0; i < strainsFiltered.size(); i++) {
-                    if (strainsFiltered.get(i).getName().toLowerCase().contains(constraint)) {
-                        Strains s = new Strains(strainsFiltered.get(i).getName(), strainsFiltered.get(i).getImageUrl());
-                        filters.add(s);
+                    // Filtering
+                    for (int i = 0; i < strainsFiltered.size(); i++) {
+                        if (strainsFiltered.get(i).getName().toLowerCase().contains(constraint)) {
+                            Strains s = new Strains(strainsFiltered.get(i).getName(), strainsFiltered.get(i).getImageUrl());
+                            filters.add(s);
+                        }
                     }
+
+                    results.count = filters.size();
+                    results.values = strainsFiltered;
+                }else {
+
+                    results.count = strainsFiltered.size();
+                    results.values = strainsFiltered;
+
+                    Log.i(TAG, "Filtering Results Count: " + results.count + " Results Value: " + results.values);
                 }
-
-                results.count = filters.size();
-                results.values = strainsFiltered;
-            }else {
-
-                results.count = strainsFiltered.size();
-                results.values = strainsFiltered;
-
-                Log.i(TAG, "Filtering Results Count: " + results.count + " Results Value: " + results.values);
             }
-
             return results;
         }
 

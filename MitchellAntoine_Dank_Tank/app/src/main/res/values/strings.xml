@@ -38,4 +38,10 @@
     <string name="helps">Helps: </string>
     <string name="effects_textview">effects textView</string>
     <string name="effects">Effects: </string>
+    <string name="profile">PROFILE</string>
+    <string name="image_profile">p-image</string>
+    <string name="upload_image">Upload Image</string>
+    <string name="profile_">Profile</string>
+    <string name="profile_list_image">profile list image</string>
+    <string name="no_favorites_saved">No Favorites Saved</string>
 </resources>
