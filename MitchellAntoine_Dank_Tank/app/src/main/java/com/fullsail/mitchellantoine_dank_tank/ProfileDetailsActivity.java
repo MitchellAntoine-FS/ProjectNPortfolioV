@@ -9,23 +9,20 @@ import android.view.MenuItem;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.fullsail.mitchellantoine_dank_tank.fragments.StrainDetailsFragment;
-import com.fullsail.mitchellantoine_dank_tank.object.DetailsListener;
+import com.fullsail.mitchellantoine_dank_tank.fragments.ProfileDetailsFragment;
+import com.fullsail.mitchellantoine_dank_tank.fragments.ProfileFragment;
+import com.fullsail.mitchellantoine_dank_tank.object.ProfileDetailsListener;
 import com.fullsail.mitchellantoine_dank_tank.object.Strains;
 import com.fullsail.mitchellantoine_dank_tank.util.FavoriteStorageUtil;
 
-import java.util.ArrayList;
-
-public class StrainDetailsActivity extends AppCompatActivity implements DetailsListener {
-
-    private static final String TAG = "StrainDetailsActivity";
-
+public class ProfileDetailsActivity extends AppCompatActivity implements ProfileDetailsListener {
+    public static final String TAG = "ProfileDetailsActivity";
     Strains strain;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_strain_details);
+        setContentView(R.layout.activity_profile_details);
 
         if (savedInstanceState == null) {
 
@@ -33,29 +30,29 @@ public class StrainDetailsActivity extends AppCompatActivity implements DetailsL
             strain = (Strains) intent.getSerializableExtra(Intent.EXTRA_INTENT);
 
             getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.details_container, StrainDetailsFragment.newInstance(), StrainDetailsFragment.TAG)
-
+                    .replace(R.id.profile_details_container, ProfileDetailsFragment.newInstance(), ProfileDetailsFragment.TAG)
                     .commit();
         }
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_details, menu);
+        getMenuInflater().inflate(R.menu.menu_profile, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
-        if (item.getItemId() == R.id.action_save) {
-            ArrayList<Strains> savedList = FavoriteStorageUtil.loadStrains(this);
-            if (strain != null && !savedList.contains(strain)) {
-                Log.i(TAG, "onOptionsItemSelected: " + strain.getName());
-                FavoriteStorageUtil.saveStrain(this, strain);
+        if (item.getItemId() == R.id.action_delete) {
+            Log.i(TAG, "onOptionsItemSelected: " + strain);
 
-                finish();
+            FavoriteStorageUtil.deleteStrain(this, getStrain());
+            ProfileFragment fragment = (ProfileFragment) getSupportFragmentManager().findFragmentByTag(ProfileFragment.TAG);
+            if (fragment != null) {
+                fragment.refresh();
             }
+            finish();
         }
 
         return true;

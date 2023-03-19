@@ -16,14 +16,17 @@ public class FavoriteStorageUtil {
 
     public static void saveStrain(Context _context, Strains _strain) {
         ArrayList<Strains> strains = loadStrains(_context);
-        strains.add(_strain);
-        saveStrains(_context, strains);
+
+            strains.add(_strain);
+            saveStrains(_context, strains);
     }
 
     @SuppressWarnings("StatementWithEmptyBody")
     public static void deleteStrain(Context _context, Strains _strain) {
         ArrayList<Strains> strains = loadStrains(_context);
+
         while(strains.remove(_strain));
+
         saveStrains(_context, strains);
     }
 

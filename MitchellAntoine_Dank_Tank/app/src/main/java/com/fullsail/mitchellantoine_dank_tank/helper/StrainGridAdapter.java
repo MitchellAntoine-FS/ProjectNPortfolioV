@@ -120,6 +120,7 @@ public class StrainGridAdapter extends BaseAdapter implements Filterable {
         }
 
         @Override
+        @SuppressWarnings("unchecked")
         protected void publishResults(CharSequence constraint, FilterResults results) {
 
             strainsFiltered = (ArrayList<Strains>) results.values;

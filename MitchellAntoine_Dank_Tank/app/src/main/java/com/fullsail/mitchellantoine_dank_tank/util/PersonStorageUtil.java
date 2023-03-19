@@ -15,6 +15,7 @@ public class PersonStorageUtil {
 
     public static void savePerson(Context _context, Person _person) {
         ArrayList<Person> people = loadPeople(_context);
+        people.clear();
         people.add(_person);
         savePeople(_context, people);
     }
