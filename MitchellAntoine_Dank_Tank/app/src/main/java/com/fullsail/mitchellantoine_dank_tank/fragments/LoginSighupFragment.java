@@ -2,15 +2,14 @@ package com.fullsail.mitchellantoine_dank_tank.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 
 import com.fullsail.mitchellantoine_dank_tank.LoginActivity;
 import com.fullsail.mitchellantoine_dank_tank.R;
@@ -47,21 +46,15 @@ public class LoginSighupFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         login = (Button) view.findViewById(R.id.login_button);
-        login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent loginIntent = new Intent(requireContext(), LoginActivity.class);
-                startActivity(loginIntent);
-            }
+        login.setOnClickListener(v -> {
+            Intent loginIntent = new Intent(requireContext(), LoginActivity.class);
+            startActivity(loginIntent);
         });
 
         signup = (Button) view.findViewById(R.id.signup_button);
-        signup.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent signupIntent = new Intent(requireContext(), SignUpActivity.class);
-                startActivity(signupIntent);
-            }
+        signup.setOnClickListener(v -> {
+            Intent signupIntent = new Intent(requireContext(), SignUpActivity.class);
+            startActivity(signupIntent);
         });
 
     }

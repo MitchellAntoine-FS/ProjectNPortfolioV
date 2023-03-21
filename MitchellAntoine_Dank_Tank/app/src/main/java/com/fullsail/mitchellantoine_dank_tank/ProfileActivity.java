@@ -76,13 +76,13 @@ public class ProfileActivity extends AppCompatActivity implements ProfileListene
     private void takePicture() {
 
         // Get Image file
-        File file = FileUtility.createImageFile(this,IMAGE_NAME, IMAGE_FOLDER);
+        File file = FileUtility.createImageFile(getApplicationContext(),IMAGE_NAME, IMAGE_FOLDER);
 
         // Get image Uri
         Uri imageUri = null;
         if (file != null) {
             Log.i(TAG, "takePicture: File Path: " + file.getAbsolutePath());
-            imageUri = FileProvider.getUriForFile(this, "com.fullsail.mitchellantoine_dank_tank", file);
+            imageUri = FileProvider.getUriForFile(getApplicationContext(), "com.fullsail.mitchellantoine_dank_tank", file);
 
         }
         Log.i(TAG, "takePicture: Image Uri: " + imageUri);
@@ -101,9 +101,9 @@ public class ProfileActivity extends AppCompatActivity implements ProfileListene
         ImageView iv = findViewById(R.id.profile_image);
 
         // Get image file reference
-        File imageFile = FileUtility.getImageFileReference(this, IMAGE_NAME, IMAGE_FOLDER);
+        File imageFile = FileUtility.getImageFileReference(getApplicationContext(), IMAGE_NAME, IMAGE_FOLDER);
         // Get image uri
-        Uri imageUri = FileProvider.getUriForFile(this, "com.fullsail.mitchellantoine_dank_tank", imageFile);
+        Uri imageUri = FileProvider.getUriForFile(getApplicationContext(), "com.fullsail.mitchellantoine_dank_tank", imageFile);
         // Assign image to profile
         iv.setImageURI(imageUri);
     }

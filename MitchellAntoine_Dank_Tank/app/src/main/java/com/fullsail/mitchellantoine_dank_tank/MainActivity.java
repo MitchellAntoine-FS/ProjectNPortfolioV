@@ -145,7 +145,7 @@ public class MainActivity extends AppCompatActivity implements StrainListener {
     }
 
     @Override
-    public void getStrainSelected(Strains strain) {
+    public void getSelectedStrain(Strains strain) {
 
         Intent detailsIntent = new Intent(getApplicationContext(), StrainDetailsActivity.class);
         detailsIntent.putExtra(Intent.EXTRA_INTENT, strain);

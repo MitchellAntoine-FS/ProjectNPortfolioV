@@ -19,9 +19,6 @@ import com.fullsail.mitchellantoine_dank_tank.R;
 import com.fullsail.mitchellantoine_dank_tank.object.Person;
 import com.fullsail.mitchellantoine_dank_tank.object.SignupListener;
 import com.fullsail.mitchellantoine_dank_tank.util.PersonStorageUtil;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
@@ -66,53 +63,50 @@ public class SignupFragment extends Fragment {
 
         mAuth = FirebaseAuth.getInstance();
         signUpBtn = (Button) view.findViewById(R.id.create_account_btn);
-        signUpBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        signUpBtn.setOnClickListener(v -> {
 
-                EditText etFirstNam = view.findViewById(R.id.first_name_entry);
-                String firstName = etFirstNam.getText().toString();
+            EditText etFirstNam = view.findViewById(R.id.first_name_entry);
+            String firstName = etFirstNam.getText().toString();
 
-                if (TextUtils.isEmpty(firstName)) {
-                    etFirstNam.setError("Required.");
-                }else {
-                    etFirstNam.setError(null);
-                }
+            if (TextUtils.isEmpty(firstName)) {
+                etFirstNam.setError("Required.");
+            }else {
+                etFirstNam.setError(null);
+            }
 
-                EditText etLastNam = view.findViewById(R.id.last_nam_entry);
-                String lastName = etLastNam.getText().toString();
+            EditText etLastNam = view.findViewById(R.id.last_nam_entry);
+            String lastName = etLastNam.getText().toString();
 
-                if (TextUtils.isEmpty(lastName)) {
-                    etLastNam.setError("Required.");
-                }else {
-                    etLastNam.setError(null);
-                }
+            if (TextUtils.isEmpty(lastName)) {
+                etLastNam.setError("Required.");
+            }else {
+                etLastNam.setError(null);
+            }
 
-                EditText etEmail = view.findViewById(R.id.signup_email_entry);
-                String email = etEmail.getText().toString();
+            EditText etEmail = view.findViewById(R.id.signup_email_entry);
+            String email = etEmail.getText().toString();
 
-                if (TextUtils.isEmpty(email)) {
-                    etEmail.setError("Required.");
-                }else {
-                    etEmail.setError(null);
-                }
+            if (TextUtils.isEmpty(email)) {
+                etEmail.setError("Required.");
+            }else {
+                etEmail.setError(null);
+            }
 
-                EditText etPassword = view.findViewById(R.id.signup_pwd_entry);
-                String pwd = etPassword.getText().toString();
+            EditText etPassword = view.findViewById(R.id.signup_pwd_entry);
+            String pwd = etPassword.getText().toString();
 
-                if (TextUtils.isEmpty(pwd)) {
-                    etPassword.setError("Required.");
-                }else {
-                    etPassword.setError(null);
-                }
+            if (TextUtils.isEmpty(pwd)) {
+                etPassword.setError("Required.");
+            }else {
+                etPassword.setError(null);
+            }
 
-                if (!(firstName.trim().length() == 0) || !(lastName.trim().length() == 0)
-                        || !(email.trim().length() == 0) || !(pwd.trim().length() == 0)) {
-                    // Create account
-                    createAccount(email, pwd);
-                    Person person = new Person(firstName, lastName);
-                    PersonStorageUtil.savePerson(getContext(), person);
-                }
+            if (!(firstName.trim().length() == 0) || !(lastName.trim().length() == 0)
+                    || !(email.trim().length() == 0) || !(pwd.trim().length() == 0)) {
+                // Create account
+                createAccount(email, pwd);
+                Person person = new Person(firstName, lastName);
+                PersonStorageUtil.savePerson(getContext(), person);
             }
         });
     }
@@ -120,25 +114,22 @@ public class SignupFragment extends Fragment {
     private void createAccount(String email, String pwd) {
 
         mAuth.createUserWithEmailAndPassword(email, pwd)
-                .addOnCompleteListener(requireActivity(), new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            // Sign up success
-                            Log.d(TAG, "createUserWithEmail: success");
+                .addOnCompleteListener(requireActivity(), task -> {
+                    if (task.isSuccessful()) {
+                        // Sign up success
+                        Log.d(TAG, "createUserWithEmail: success");
 
-                            ArrayList<Person> userNam = PersonStorageUtil.loadPeople(getActivity());
-                            Toast.makeText(getContext(), userNam.get(0).getFirst_name() +
-                                    " " + userNam.get(0).getLast_name() + " Logged In.", Toast.LENGTH_SHORT).show();
+                        ArrayList<Person> userNam = PersonStorageUtil.loadPeople(getActivity());
+                        Toast.makeText(getContext(), userNam.get(0).getFirst_name() +
+                                " " + userNam.get(0).getLast_name() + " Logged In.", Toast.LENGTH_SHORT).show();
 
-                            mListener.closeSignup();
+                        mListener.closeSignup();
 
-                        } else {
-                            // If sign up fails, display a message to the user.
-                            Log.w(TAG, "createUserWithEmail: failure", task.getException());
-                            Toast.makeText(getContext(), "Something went wrong!", Toast.LENGTH_SHORT).show();
+                    } else {
+                        // If sign up fails, display a message to the user.
+                        Log.w(TAG, "createUserWithEmail: failure", task.getException());
+                        Toast.makeText(getContext(), "Something went wrong!", Toast.LENGTH_SHORT).show();
 
-                        }
                     }
                 });
     }

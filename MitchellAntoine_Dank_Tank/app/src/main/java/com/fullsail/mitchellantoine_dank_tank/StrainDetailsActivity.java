@@ -49,9 +49,13 @@ public class StrainDetailsActivity extends AppCompatActivity implements DetailsL
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
         if (item.getItemId() == R.id.action_save) {
+
             ArrayList<Strains> savedList = FavoriteStorageUtil.loadStrains(this);
+
             if (strain != null && !savedList.contains(strain)) {
+
                 Log.i(TAG, "onOptionsItemSelected: " + strain.getName());
+
                 FavoriteStorageUtil.saveStrain(this, strain);
 
                 finish();

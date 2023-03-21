@@ -1,6 +1,5 @@
 package com.fullsail.mitchellantoine_dank_tank;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -21,23 +20,17 @@ public class LoginSignupActivity extends AppCompatActivity {
         dialog.setTitle("AGE VERIFICATION");
         dialog.setMessage("Are you 21 years old or older?");
 
-        dialog.setPositiveButton("YES", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                // Open Login/Signup page
-                getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.login_signup_fragment_container,
-                                LoginSighupFragment.newInstance(), LoginSighupFragment.TAG)
-                        .commit();
-            }
+        dialog.setPositiveButton("YES", (dialog1, which) -> {
+            // Open Login/Signup page
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.login_signup_fragment_container,
+                            LoginSighupFragment.newInstance(), LoginSighupFragment.TAG)
+                    .commit();
         });
 
-        dialog.setNegativeButton("NO", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                Intent intent = new Intent(getApplicationContext(), RejectionActivity.class);
-                startActivity(intent);
-            }
+        dialog.setNegativeButton("NO", (dialog12, which) -> {
+            Intent intent = new Intent(getApplicationContext(), RejectionActivity.class);
+            startActivity(intent);
         });
         dialog.show();
 

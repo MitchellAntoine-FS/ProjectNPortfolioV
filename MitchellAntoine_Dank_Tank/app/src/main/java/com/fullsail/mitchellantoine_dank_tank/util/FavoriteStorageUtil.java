@@ -1,6 +1,7 @@
 package com.fullsail.mitchellantoine_dank_tank.util;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.fullsail.mitchellantoine_dank_tank.object.Strains;
 
@@ -15,23 +16,28 @@ public class FavoriteStorageUtil {
     public static final String FILE_NAME_FAV = "favorite.dat";
 
     public static void saveStrain(Context _context, Strains _strain) {
+
         ArrayList<Strains> strains = loadStrains(_context);
 
             strains.add(_strain);
+
             saveStrains(_context, strains);
     }
 
-    @SuppressWarnings("StatementWithEmptyBody")
     public static void deleteStrain(Context _context, Strains _strain) {
+
         ArrayList<Strains> strains = loadStrains(_context);
 
-        while(strains.remove(_strain));
+        Log.i("FAV", "deleteStrain: " + _strain.toString());
+
+        strains.remove(_strain);
 
         saveStrains(_context, strains);
     }
 
     @SuppressWarnings("unchecked")
     public static ArrayList<Strains> loadStrains(Context context) {
+
         ArrayList<Strains> strains = new ArrayList<>();
 
         try {

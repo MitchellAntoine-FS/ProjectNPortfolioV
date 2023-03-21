@@ -1,30 +1,28 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">Dank Tank</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="canna_background">canna background</string>
     <string name="log_in">Log In</string>
     <string name="create_account">Create Account</string>
     <string name="email_address">Email Address</string>
-    <string name="password">Password</string>
+    <string name="password" tools:keep="@string/password">Password</string>
     <string name="pword">Password</string>
     <string name="email">"Email "</string>
     <string name="password_here">Password Here</string>
     <string name="first_name_signup">First Name</string>
-    <string name="enter_first_name">Enter First Name</string>
+    <string name="enter_first_name" tools:keep="@string/enter_first_name">Enter First Name</string>
     <string name="last_name">Last Name</string>
-    <string name="enter_last_name">Enter Last Name</string>
+    <string name="enter_last_name" tools:keep="@string/enter_last_name">Enter Last Name</string>
     <string name="signup_email">Email Address</string>
     <string name="signup_password_label">Password</string>
     <string name="create_account_btn">Create Account</string>
     <string name="rejection_text">You Must Be At Least 21yrs Old</string>
-    <string name="main_background">main_background</string>
+    <string name="main_background" tools:keep="@string/main_background">main_background</string>
     <string name="login_background">login_background</string>
     <string name="log_in_background">log_in_background</string>
     <string name="gorilla_glue_4">Gorilla Glue 4</string>
     <string name="gorilla_glue4">gorillaglue4</string>
     <string name="search">Search</string>
-    <string name="search_hint">Search Strains</string>
+    <string name="search_hint" tools:keep="@string/search_hint">Search Strains</string>
     <string name="type_name">Strain Type or Name</string>
     <string name="details_strain_name_label">Strain Name</string>
     <string name="details_image_desc">Details Image Desc</string>
@@ -40,7 +38,7 @@
     <string name="effects">Effects: </string>
     <string name="profile">PROFILE</string>
     <string name="image_profile">p-image</string>
-    <string name="upload_image">Upload Image</string>
+    <string name="upload_image" tools:keep="@string/upload_image">Upload Image</string>
     <string name="profile_">Profile</string>
     <string name="profile_list_image">profile list image</string>
     <string name="no_favorites_saved">No Favorites Saved</string>

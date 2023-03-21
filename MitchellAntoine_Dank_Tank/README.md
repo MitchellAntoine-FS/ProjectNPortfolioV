@@ -17,13 +17,7 @@ Android 7.1 Nougat or higher
 Log In Requierments For Testing
 -------------------------------
 
-Option 1:
-Email: test@mail.com
-Password; password
-
-Option 2:
 Create an account to log in.
-
 
 Known bugs
 ----------

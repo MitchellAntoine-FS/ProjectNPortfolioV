@@ -5,5 +5,5 @@ import java.util.ArrayList;
 public interface StrainListener {
     ArrayList<Strains> getStrains();
 
-    void getStrainSelected(Strains strains);
+    void getSelectedStrain(Strains strains);
 }

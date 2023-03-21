@@ -11,6 +11,7 @@ public class Strains implements Serializable {
     private String helps;
     private String type;
 
+    @SuppressWarnings("unused")
     public Strains() {
         // Required Empty Constructor
     }

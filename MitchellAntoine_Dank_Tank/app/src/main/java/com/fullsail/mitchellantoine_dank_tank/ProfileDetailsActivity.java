@@ -18,6 +18,7 @@ import com.fullsail.mitchellantoine_dank_tank.util.FavoriteStorageUtil;
 public class ProfileDetailsActivity extends AppCompatActivity implements ProfileDetailsListener {
     public static final String TAG = "ProfileDetailsActivity";
     Strains strain;
+    Strains favStrain;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,9 +46,13 @@ public class ProfileDetailsActivity extends AppCompatActivity implements Profile
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
         if (item.getItemId() == R.id.action_delete) {
-            Log.i(TAG, "onOptionsItemSelected: " + strain);
 
-            FavoriteStorageUtil.deleteStrain(this, getStrain());
+            favStrain = new Strains(strain.getName(), strain.getImageUrl());
+
+            Log.i(TAG, "onOptionsItemSelected: " + favStrain);
+
+            FavoriteStorageUtil.deleteStrain(this, favStrain);
+
             ProfileFragment fragment = (ProfileFragment) getSupportFragmentManager().findFragmentByTag(ProfileFragment.TAG);
             if (fragment != null) {
                 fragment.refresh();
@@ -62,4 +67,5 @@ public class ProfileDetailsActivity extends AppCompatActivity implements Profile
     public Strains getStrain() {
         return strain;
     }
+
 }

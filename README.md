@@ -1,2 +1,0 @@
-# ProjectNPortfolioV
-Dank Tank Android

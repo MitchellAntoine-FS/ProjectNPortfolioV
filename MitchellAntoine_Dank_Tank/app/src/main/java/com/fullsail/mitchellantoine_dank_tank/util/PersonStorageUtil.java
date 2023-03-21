@@ -20,13 +20,6 @@ public class PersonStorageUtil {
         savePeople(_context, people);
     }
 
-    @SuppressWarnings("StatementWithEmptyBody")
-    public static void deletePerson(Context _context, Person _person) {
-        ArrayList<Person> people = loadPeople(_context);
-        while(people.remove(_person));
-        savePeople(_context, people);
-    }
-
     @SuppressWarnings("unchecked")
     public static ArrayList<Person> loadPeople(Context _context) {
         ArrayList<Person> people = null;
