@@ -56,19 +56,17 @@ public class StrainGridFragment extends Fragment implements AdapterView.OnItemCl
         // Open Detailed View
         Strains strains = (Strains) parent.getAdapter().getItem(position);
         if (mListener != null) {
-            mListener.getSelectedStrain(strains);
+            mListener.getSelectedStrain(position);
         }
-
     }
 
     public void refresh() {
 
-        StrainGridAdapter adapter = new StrainGridAdapter(requireContext(),mListener.getStrains());
+        StrainGridAdapter adapter = new StrainGridAdapter(requireContext(), mListener.getStrains());
 
         gridView = requireView().findViewById(R.id.strain_grid);
         gridView.setAdapter(adapter);
         gridView.setOnItemClickListener(this);
 
     }
-
 }

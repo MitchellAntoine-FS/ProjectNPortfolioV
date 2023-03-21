@@ -24,11 +24,11 @@ public class FavoriteStorageUtil {
             saveStrains(_context, strains);
     }
 
-    public static void deleteStrain(Context _context, Strains _strain) {
+    public static void deleteStrain(Context _context, int _strain) {
 
         ArrayList<Strains> strains = loadStrains(_context);
 
-        Log.i("FAV", "deleteStrain: " + _strain.toString());
+        Log.i("FAV", "deleteStrain: " + _strain);
 
         strains.remove(_strain);
 

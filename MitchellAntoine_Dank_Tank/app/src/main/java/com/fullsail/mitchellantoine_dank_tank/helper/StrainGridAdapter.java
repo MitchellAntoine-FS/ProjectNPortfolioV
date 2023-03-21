@@ -33,13 +33,13 @@ public class StrainGridAdapter extends BaseAdapter implements Filterable {
 
     @Override
     public int getCount() {
-        Log.i(TAG, "getCount: " + strainsArray.size());
-        return strainsArray.size();
+        Log.i(TAG, "getCount: " + strainsFiltered.size());
+        return strainsFiltered.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return strainsArray.get(position);
+        return strainsFiltered.get(position);
     }
 
     @Override
@@ -58,15 +58,15 @@ public class StrainGridAdapter extends BaseAdapter implements Filterable {
 
         ImageView iv = gridItemView.findViewById(R.id.grid_item_imageView);
         Picasso.get()
-                .load(strainsArray.get(position).getImageUrl())
+                .load(strainsFiltered.get(position).getImageUrl())
                 .resize(400, 400)
                 .centerCrop()
                 .into(iv);
 
         TextView tv = gridItemView.findViewById(R.id.strain_name_textView);
-        tv.setText(strainsArray.get(position).getName());
+        tv.setText(strainsFiltered.get(position).getName());
 
-        Log.i(TAG, "getView: " + strainsArray.get(position).getName());
+        Log.i(TAG, "getView: " + strainsFiltered.get(position).getName() + "\n" + strainsFiltered.size());
 
         return gridItemView;
     }
@@ -99,22 +99,20 @@ public class StrainGridAdapter extends BaseAdapter implements Filterable {
                     ArrayList<Strains> filters = new ArrayList<>();
 
                     // Filtering
-                    for (int i = 0; i < strainsFiltered.size(); i++) {
-                        if (strainsFiltered.get(i).getName().toLowerCase().contains(constraint)) {
-                            Strains s = new Strains(strainsFiltered.get(i).getName(), strainsFiltered.get(i).getImageUrl());
+                    for (int i = 0; i < strainsArray.size(); i++) {
+                        if (strainsArray.get(i).getName().toLowerCase().contains(constraint)) {
+                            Strains s = new Strains(strainsArray.get(i).getName(), strainsArray.get(i).getImageUrl());
                             filters.add(s);
                         }
                     }
 
+                    results.values = filters;
                     results.count = filters.size();
-                    results.values = strainsFiltered;
                 }else {
 
-                    results.count = strainsFiltered.size();
                     results.values = strainsFiltered;
-
-                    Log.i(TAG, "Filtering Results Count: " + results.count + " Results Value: " + results.values);
                 }
+                Log.i(TAG, "Filtering Results Count: " + results.count + " Results Value: " + results.values);
             }
             return results;
         }
@@ -124,9 +122,12 @@ public class StrainGridAdapter extends BaseAdapter implements Filterable {
         protected void publishResults(CharSequence constraint, FilterResults results) {
 
             strainsFiltered = (ArrayList<Strains>) results.values;
+            Log.i(TAG, "publishResults: " + strainsFiltered.size());
+
             notifyDataSetChanged();
         }
     }
+
 
 }
 

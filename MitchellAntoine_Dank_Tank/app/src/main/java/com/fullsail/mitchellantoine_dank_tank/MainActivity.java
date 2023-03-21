@@ -48,10 +48,11 @@ public class MainActivity extends AppCompatActivity implements StrainListener {
                 startActivity(logInIntent);
             } else {
                 // Open main grid fragment
-                updateUI();
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.main_container, StrainGridFragment.newInstance(), StrainGridFragment.TAG)
+                        .commit();
             }
         }
-
     }
 
     @Override
@@ -84,9 +85,7 @@ public class MainActivity extends AppCompatActivity implements StrainListener {
             }
 
             // Open main grid fragment
-            getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.main_container, StrainGridFragment.newInstance(), StrainGridFragment.TAG)
-                    .commit();
+            updateUI();
         }
     }
 
@@ -95,7 +94,6 @@ public class MainActivity extends AppCompatActivity implements StrainListener {
         getMenuInflater().inflate(R.menu.menu_main, menu);
 
         MenuItem menuItem = menu.findItem(R.id.app_bar_search);
-
         SearchView searchView = (SearchView) menuItem.getActionView();
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -111,26 +109,22 @@ public class MainActivity extends AppCompatActivity implements StrainListener {
                 StrainGridAdapter adapter =
                         new StrainGridAdapter(getApplicationContext(), getStrains());
                 adapter.getFilter().filter(newText);
-
+                updateUI();
 
                 return true;
             }
         });
-
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-
         if (item.getItemId() == R.id.app_bar_search) {
             return true;
         } else if (item.getItemId() == R.id.profile_btn) {
             Intent profileIntent = new Intent(this, ProfileActivity.class);
-
             startActivity(profileIntent);
         }
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -145,14 +139,14 @@ public class MainActivity extends AppCompatActivity implements StrainListener {
     }
 
     @Override
-    public void getSelectedStrain(Strains strain) {
+    public void getSelectedStrain(int position) {
 
         Intent detailsIntent = new Intent(getApplicationContext(), StrainDetailsActivity.class);
-        detailsIntent.putExtra(Intent.EXTRA_INTENT, strain);
+        detailsIntent.putExtra(Intent.EXTRA_INTENT, strainsArray.get(position));
         startActivity(detailsIntent);
     }
 
-    private void updateUI() {
+    public void updateUI() {
         StrainGridFragment fragment = (StrainGridFragment)
                 getSupportFragmentManager().findFragmentByTag(StrainGridFragment.TAG);
 
@@ -160,7 +154,6 @@ public class MainActivity extends AppCompatActivity implements StrainListener {
             fragment.refresh();
         }
     }
-
 
 }
 

@@ -17,8 +17,9 @@ import com.fullsail.mitchellantoine_dank_tank.util.FavoriteStorageUtil;
 
 public class ProfileDetailsActivity extends AppCompatActivity implements ProfileDetailsListener {
     public static final String TAG = "ProfileDetailsActivity";
+    public static final String EXTRA_POSITION = "com.fullsail.mitchellantoine_dank_tank.EXTRA_POSITION";
     Strains strain;
-    Strains favStrain;
+    int position;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +30,7 @@ public class ProfileDetailsActivity extends AppCompatActivity implements Profile
 
             Intent intent = getIntent();
             strain = (Strains) intent.getSerializableExtra(Intent.EXTRA_INTENT);
+            position = intent.getIntExtra(EXTRA_POSITION, 0);
 
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.profile_details_container, ProfileDetailsFragment.newInstance(), ProfileDetailsFragment.TAG)
@@ -47,11 +49,9 @@ public class ProfileDetailsActivity extends AppCompatActivity implements Profile
 
         if (item.getItemId() == R.id.action_delete) {
 
-            favStrain = new Strains(strain.getName(), strain.getImageUrl());
+            Log.i(TAG, "onOptionsItemSelected: " + strain);
 
-            Log.i(TAG, "onOptionsItemSelected: " + favStrain);
-
-            FavoriteStorageUtil.deleteStrain(this, favStrain);
+            FavoriteStorageUtil.deleteStrain(this, position);
 
             ProfileFragment fragment = (ProfileFragment) getSupportFragmentManager().findFragmentByTag(ProfileFragment.TAG);
             if (fragment != null) {

@@ -88,9 +88,12 @@ public class ProfileFragment extends ListFragment {
     @Override
     public void onListItemClick(@NonNull ListView l, @NonNull View v, int position, long id) {
         super.onListItemClick(l, v, position, id);
+
         Strains strain = (Strains) l.getAdapter().getItem(position);
+
         if (mListener != null) {
-            mListener.getStrainSelected(strain);
+
+            mListener.getStrainPosition(strain, position);
         }
 
     }

@@ -37,7 +37,6 @@ public class ProfileActivity extends AppCompatActivity implements ProfileListene
                     .replace(R.id.profile_container, ProfileFragment.newInstance(), ProfileFragment.TAG)
                     .commit();
         }
-
     }
 
     @Override
@@ -51,12 +50,14 @@ public class ProfileActivity extends AppCompatActivity implements ProfileListene
     }
 
     @Override
-    public void getStrainSelected(Strains strain) {
+    public void getStrainPosition(Strains strain, int position) {
 
         Intent profileDetailsIntent = new Intent(getApplicationContext(), ProfileDetailsActivity.class);
         profileDetailsIntent.putExtra(Intent.EXTRA_INTENT, strain);
+        profileDetailsIntent.putExtra(ProfileDetailsActivity.EXTRA_POSITION, position);
         startActivity(profileDetailsIntent);
     }
+
     @Override
     public boolean onCreateOptionsMenu(@NonNull Menu menu) {
         getMenuInflater().inflate(R.menu.camera_menu, menu);
