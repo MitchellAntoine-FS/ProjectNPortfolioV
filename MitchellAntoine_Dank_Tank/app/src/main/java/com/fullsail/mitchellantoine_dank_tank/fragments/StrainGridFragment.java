@@ -56,7 +56,7 @@ public class StrainGridFragment extends Fragment implements AdapterView.OnItemCl
         // Open Detailed View
         Strains strains = (Strains) parent.getAdapter().getItem(position);
         if (mListener != null) {
-            mListener.getSelectedStrain(position);
+            mListener.getSelectedStrainByPosition(position);
         }
     }
 

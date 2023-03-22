@@ -120,8 +120,7 @@ public class SignupFragment extends Fragment {
                         Log.d(TAG, "createUserWithEmail: success");
 
                         ArrayList<Person> userNam = PersonStorageUtil.loadPeople(getActivity());
-                        Toast.makeText(getContext(), userNam.get(0).getFirst_name() +
-                                " " + userNam.get(0).getLast_name() + " Logged In.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), "Hi " + userNam.get(0).getFirst_name() , Toast.LENGTH_SHORT).show();
 
                         mListener.closeSignup();
 
