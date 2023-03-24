@@ -20,6 +20,8 @@ import com.fullsail.mitchellantoine_dank_tank.object.Person;
 import com.fullsail.mitchellantoine_dank_tank.object.SignupListener;
 import com.fullsail.mitchellantoine_dank_tank.util.PersonStorageUtil;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 
 import java.util.ArrayList;
 
@@ -103,10 +105,29 @@ public class SignupFragment extends Fragment {
 
             if (!(firstName.trim().length() == 0) || !(lastName.trim().length() == 0)
                     || !(email.trim().length() == 0) || !(pwd.trim().length() == 0)) {
+
                 // Create account
                 createAccount(email, pwd);
+
                 Person person = new Person(firstName, lastName);
                 PersonStorageUtil.savePerson(getContext(), person);
+
+                // Add user name to Firebase
+                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+                String user_name = firstName + " " + lastName;
+
+                UserProfileChangeRequest profileUpdate = new UserProfileChangeRequest.Builder()
+                        .setDisplayName(user_name)
+                        .build();
+
+                if (user != null) {
+                    user.updateProfile(profileUpdate).addOnCompleteListener(task -> {
+                        if (task.isSuccessful()) {
+                            Log.i(TAG, "User Updated: ");
+                        }
+                    });
+                }
             }
         });
     }

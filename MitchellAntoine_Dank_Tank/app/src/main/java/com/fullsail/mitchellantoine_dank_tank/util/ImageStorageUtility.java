@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.Objects;
 
-public class FileUtility {
+public class ImageStorageUtility {
 
     public static File createImageFile(@NonNull Context _context, String _fileName, String _folderName) {
         File imageFile = getImageFileReference(_context,_fileName, _folderName);

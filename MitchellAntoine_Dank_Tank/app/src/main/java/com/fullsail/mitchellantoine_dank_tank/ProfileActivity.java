@@ -18,7 +18,7 @@ import androidx.core.content.FileProvider;
 import com.fullsail.mitchellantoine_dank_tank.fragments.ProfileFragment;
 import com.fullsail.mitchellantoine_dank_tank.object.ProfileListener;
 import com.fullsail.mitchellantoine_dank_tank.object.Strains;
-import com.fullsail.mitchellantoine_dank_tank.util.FileUtility;
+import com.fullsail.mitchellantoine_dank_tank.util.ImageStorageUtility;
 
 import java.io.File;
 
@@ -77,7 +77,7 @@ public class ProfileActivity extends AppCompatActivity implements ProfileListene
     private void takePicture() {
 
         // Get Image file
-        File file = FileUtility.createImageFile(getApplicationContext(),IMAGE_NAME, IMAGE_FOLDER);
+        File file = ImageStorageUtility.createImageFile(getApplicationContext(),IMAGE_NAME, IMAGE_FOLDER);
 
         // Get image Uri
         Uri imageUri = null;
@@ -102,7 +102,7 @@ public class ProfileActivity extends AppCompatActivity implements ProfileListene
         ImageView iv = findViewById(R.id.profile_image);
 
         // Get image file reference
-        File imageFile = FileUtility.getImageFileReference(getApplicationContext(), IMAGE_NAME, IMAGE_FOLDER);
+        File imageFile = ImageStorageUtility.getImageFileReference(getApplicationContext(), IMAGE_NAME, IMAGE_FOLDER);
         // Get image uri
         Uri imageUri = FileProvider.getUriForFile(getApplicationContext(), "com.fullsail.mitchellantoine_dank_tank", imageFile);
         // Assign image to profile

@@ -28,12 +28,12 @@ public class StrainGridAdapter extends BaseAdapter implements Filterable {
     public StrainGridAdapter(Context _context, ArrayList<Strains> _strains) {
         this.strainsArray = _strains;
         this.mContext = _context;
-        this.strainsFiltered = _strains;
+        this.strainsFiltered = strainsArray;
     }
 
     @Override
     public int getCount() {
-        Log.i(TAG, "getCount: " + strainsFiltered.size());
+        Log.i(TAG, "getCount: " + strainsArray.size());
         return strainsFiltered.size();
     }
 

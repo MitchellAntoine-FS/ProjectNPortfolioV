@@ -1,5 +1,6 @@
 package com.fullsail.mitchellantoine_dank_tank.fragments;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
@@ -18,12 +19,12 @@ import androidx.fragment.app.ListFragment;
 
 import com.fullsail.mitchellantoine_dank_tank.ProfileActivity;
 import com.fullsail.mitchellantoine_dank_tank.R;
-import com.fullsail.mitchellantoine_dank_tank.object.Person;
 import com.fullsail.mitchellantoine_dank_tank.object.ProfileListener;
 import com.fullsail.mitchellantoine_dank_tank.object.Strains;
 import com.fullsail.mitchellantoine_dank_tank.util.FavoriteStorageUtil;
-import com.fullsail.mitchellantoine_dank_tank.util.FileUtility;
-import com.fullsail.mitchellantoine_dank_tank.util.PersonStorageUtil;
+import com.fullsail.mitchellantoine_dank_tank.util.ImageStorageUtility;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.squareup.picasso.Picasso;
 
 import java.io.File;
@@ -55,21 +56,23 @@ public class ProfileFragment extends ListFragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        ArrayList<Person> people = PersonStorageUtil.loadPeople(getActivity());
-
         TextView tvUserName = view.findViewById(R.id.users_name);
-        String person = people.get(0).getFirst_name() + " " + people.get(0).getLast_name();
-        tvUserName.setText(person);
+
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+        if (user != null) {
+            tvUserName.setText(user.getDisplayName());
+        }
 
         ImageView iv = view.findViewById(R.id.profile_image);
 
         // Get image file reference
-        File imageFile = FileUtility.getImageFileReference(requireActivity(),
+        File imageFile = ImageStorageUtility.getImageFileReference(requireActivity(),
                 ProfileActivity.IMAGE_NAME, ProfileActivity.IMAGE_FOLDER);
         if (imageFile.exists()) {
 
             // Get image uri
-            Uri imageUri = FileProvider.getUriForFile(requireActivity(), "com.fullsail.mitchellantoine_dank_tank", imageFile);
+            Uri imageUri = FileProvider.getUriForFile(requireActivity(), getString(R.string.authority), imageFile);
             // Assign image to profile
             iv.setImageURI(imageUri);
         }
@@ -124,6 +127,7 @@ public class ProfileFragment extends ListFragment {
             return position;
         }
 
+        @SuppressLint("InflateParams")
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
 
