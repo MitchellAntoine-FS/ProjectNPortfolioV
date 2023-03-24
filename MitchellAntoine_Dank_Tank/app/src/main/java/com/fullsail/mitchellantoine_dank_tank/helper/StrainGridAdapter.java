@@ -20,7 +20,7 @@ import java.util.ArrayList;
 public class StrainGridAdapter extends BaseAdapter implements Filterable {
     private static final String TAG = "StrainGridAdapter";
     private final ArrayList<Strains> strainsArray;
-    private ArrayList<Strains> strainsFiltered;
+    public static ArrayList<Strains> strainsFiltered;
     CustomFilter filter;
 
     private final Context mContext;
@@ -28,7 +28,7 @@ public class StrainGridAdapter extends BaseAdapter implements Filterable {
     public StrainGridAdapter(Context _context, ArrayList<Strains> _strains) {
         this.strainsArray = _strains;
         this.mContext = _context;
-        this.strainsFiltered = strainsArray;
+        strainsFiltered = strainsArray;
     }
 
     @Override
@@ -105,12 +105,11 @@ public class StrainGridAdapter extends BaseAdapter implements Filterable {
                             filters.add(s);
                         }
                     }
-
                     results.values = filters;
                     results.count = filters.size();
                 }else {
-
-                    results.values = strainsFiltered;
+                    results.count = strainsArray.size();
+                    results.values = strainsArray;
                 }
                 Log.i(TAG, "Filtering Results Count: " + results.count + " Results Value: " + results.values);
             }

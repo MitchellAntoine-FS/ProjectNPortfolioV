@@ -83,9 +83,6 @@ public class MainActivity extends AppCompatActivity implements StrainListener {
             }else {
                 loggedIn = false;
             }
-
-            // Open main grid fragment
-            updateUI();
         }
     }
 
@@ -106,10 +103,18 @@ public class MainActivity extends AppCompatActivity implements StrainListener {
             public boolean onQueryTextChange(String newText) {
 
                 Log.i(TAG, "onQueryTextChange: " + newText);
-                StrainGridAdapter adapter =
-                        new StrainGridAdapter(getApplicationContext(), getStrains());
+
+                StrainGridAdapter adapter;
+                if (!newText.isEmpty()) {
+                    adapter = new StrainGridAdapter(
+                            getApplicationContext(), StrainGridAdapter.strainsFiltered);
+                }else {
+                    adapter = new StrainGridAdapter(
+                            getApplicationContext(), getStrains());
+                }
                 adapter.getFilter().filter(newText);
                 updateUI();
+                adapter.notifyDataSetChanged();
 
                 return true;
             }
