@@ -18,6 +18,9 @@ import androidx.fragment.app.Fragment;
 import com.fullsail.mitchellantoine_dank_tank.R;
 import com.fullsail.mitchellantoine_dank_tank.object.LogInListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
+import java.util.Objects;
 
 public class LoginFragment extends Fragment {
     public static final String TAG = "LoginFragment.TAG";
@@ -93,7 +96,10 @@ public class LoginFragment extends Fragment {
                     if (task.isSuccessful()) {
                         // Sign in success
                         Log.d(TAG, "signInWithEmail: success");
-                        Toast.makeText(getContext(), "Logged In.", Toast.LENGTH_SHORT).show();
+
+                        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+                        Toast.makeText(getContext(),"Hi Again " +  Objects.requireNonNull(user).getDisplayName(), Toast.LENGTH_SHORT).show();
 
                         mListener.closeLogIn();
 

@@ -19,6 +19,8 @@ import com.fullsail.mitchellantoine_dank_tank.R;
 import com.fullsail.mitchellantoine_dank_tank.object.Person;
 import com.fullsail.mitchellantoine_dank_tank.object.SignupListener;
 import com.fullsail.mitchellantoine_dank_tank.util.PersonStorageUtil;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
@@ -64,7 +66,7 @@ public class SignupFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         mAuth = FirebaseAuth.getInstance();
-        signUpBtn = (Button) view.findViewById(R.id.create_account_btn);
+        signUpBtn = view.findViewById(R.id.create_account_btn);
         signUpBtn.setOnClickListener(v -> {
 
             EditText etFirstNam = view.findViewById(R.id.first_name_entry);
@@ -106,28 +108,12 @@ public class SignupFragment extends Fragment {
             if (!(firstName.trim().length() == 0) || !(lastName.trim().length() == 0)
                     || !(email.trim().length() == 0) || !(pwd.trim().length() == 0)) {
 
-                // Create account
-                createAccount(email, pwd);
-
                 Person person = new Person(firstName, lastName);
                 PersonStorageUtil.savePerson(getContext(), person);
 
-                // Add user name to Firebase
-                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                // Create account
+                createAccount(email, pwd);
 
-                String user_name = firstName + " " + lastName;
-
-                UserProfileChangeRequest profileUpdate = new UserProfileChangeRequest.Builder()
-                        .setDisplayName(user_name)
-                        .build();
-
-                if (user != null) {
-                    user.updateProfile(profileUpdate).addOnCompleteListener(task -> {
-                        if (task.isSuccessful()) {
-                            Log.i(TAG, "User Updated: ");
-                        }
-                    });
-                }
             }
         });
     }
@@ -142,6 +128,26 @@ public class SignupFragment extends Fragment {
 
                         ArrayList<Person> userNam = PersonStorageUtil.loadPeople(getActivity());
                         Toast.makeText(getContext(), "Hi " + userNam.get(0).getFirst_name() , Toast.LENGTH_SHORT).show();
+
+                        // Add user name to Firebase
+                        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+                        String user_name = userNam.get(0).getFirst_name() + " " + userNam.get(0).getLast_name();
+
+                        UserProfileChangeRequest profileUpdate = new UserProfileChangeRequest.Builder()
+                                .setDisplayName(user_name)
+                                .build();
+
+                        if (user != null) {
+                            user.updateProfile(profileUpdate).addOnCompleteListener(new OnCompleteListener<>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if (task.isSuccessful()) {
+                                        Log.i(TAG, "User Updated: ");
+                                    }
+                                }
+                            });
+                        }
 
                         mListener.closeSignup();
 

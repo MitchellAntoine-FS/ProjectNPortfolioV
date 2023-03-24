@@ -29,11 +29,13 @@ import com.squareup.picasso.Picasso;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class ProfileFragment extends ListFragment {
     public static final String TAG = "ProfileFragment";
 
     ProfileListener mListener;
+    FirebaseUser user;
     public static ProfileFragment newInstance() {
         return new ProfileFragment();
     }
@@ -58,11 +60,9 @@ public class ProfileFragment extends ListFragment {
 
         TextView tvUserName = view.findViewById(R.id.users_name);
 
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        user = FirebaseAuth.getInstance().getCurrentUser();
 
-        if (user != null) {
-            tvUserName.setText(user.getDisplayName());
-        }
+        tvUserName.setText(Objects.requireNonNull(user).getDisplayName());
 
         ImageView iv = view.findViewById(R.id.profile_image);
 
